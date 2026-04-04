@@ -103,6 +103,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
                 
+                // Reset animations for certifications section if navigating there
+                if (targetId === '#certifications') {
+                    document.querySelectorAll('.education-card').forEach(card => {
+                        card.classList.remove('animate');
+                    });
+                }
+                
                 // Reset animations for experience section if navigating there
                 if (targetId === '#experience') {
                     document.querySelectorAll('.experience-card').forEach(card => {
@@ -142,6 +149,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // If navigating to education, trigger animations
                     if (targetId === '#education') {
+                        setTimeout(() => {
+                            const educationCards = document.querySelectorAll('.education-card');
+                            educationCards.forEach((card) => {
+                                // Add animation class to trigger line-by-line animations
+                                card.classList.add('animate');
+                            });
+                        }, 400);
+                    }
+                    
+                    // If navigating to certifications, trigger animations
+                    if (targetId === '#certifications') {
                         setTimeout(() => {
                             const educationCards = document.querySelectorAll('.education-card');
                             educationCards.forEach((card) => {
