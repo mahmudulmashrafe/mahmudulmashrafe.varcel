@@ -7,10 +7,11 @@ export interface Project {
   category: 'Machine Learning' | 'Data Engineering' | 'Full Stack' | 'Robotics & CV';
   year: string;
   tags: string[];
-  metrics?: string;
-  githubUrl?: string;
+  metrics: string;
+  githubUrl: string;
   liveUrl?: string;
   featured: boolean;
+  architectureHighlights: string[];
 }
 
 export interface Experience {
@@ -38,6 +39,7 @@ export interface EducationItem {
   details?: string;
   location: string;
   badges?: string[];
+  scholarship?: string;
 }
 
 export interface CertificationItem {
@@ -61,27 +63,58 @@ export interface InsightArticle {
 export const PORTFOLIO_DATA = {
   profile: {
     name: 'Mahmudul Mashrafe',
-    role: 'Data Scientist & Machine Learning Engineer',
+    tagline: 'Data Scientist & Machine Learning Engineer',
+    roles: [
+      'Data Scientist',
+      'Machine Learning Engineer',
+      'Teaching Assistant @ UIU',
+      'Deep Learning & CV Researcher',
+      'Data Pipeline Architect',
+    ],
     headline: 'Engineering resilient machine learning systems & high-throughput data architectures.',
     shortBio:
-      'Undergraduate Assistant at United International University specializing in machine learning, statistical modeling, and computer vision. Committed to clean code, rigorous data engineering, and human-centered design.',
+      'Undergraduate Assistant and Teaching Assistant at United International University (UIU), Dhaka. Maintaining a 3.92/4.00 CGPA with a 100% Academic Merit Scholarship. Passionate about computer vision, applied statistical learning, and building scalable full-stack data solutions.',
     location: 'Dhaka, Bangladesh',
     timezone: 'Asia/Dhaka (GMT+6)',
     email: 'mahmudulmashrafe@gmail.com',
     phone: '(+880) 1798210399',
+    studentId: '0112230115',
     status: {
       available: true,
-      label: 'Available for ML Engineering & Research Collaborations',
+      label: 'Open for ML Engineering & Research Roles',
+      currentRole: 'Teaching Assistant @ UIU Department of CSE',
     },
+    achievements: [
+      {
+        title: '100% Merit Tuition Fee Waiver Scholarship',
+        issuer: 'United International University',
+        desc: 'Awarded for sustained top-tier academic excellence in B.Sc. in CSE.',
+      },
+      {
+        title: '3.92 / 4.00 Cumulative GPA',
+        issuer: 'Major in Data Science',
+        desc: 'Consistent placement on the Vice-Chancellor & Dean’s Academic Honor List across 84+ completed credits.',
+      },
+      {
+        title: 'Teaching Assistant (TA)',
+        issuer: 'Department of CSE, UIU',
+        desc: 'Conducting Machine Learning & Data Science labs and mentoring 100+ engineering students.',
+      },
+      {
+        title: 'Double Golden GPA 5.00',
+        issuer: 'HSC & SSC Science',
+        desc: 'Perfect academic scores in board examinations across physics, chemistry, and higher mathematics.',
+      },
+    ],
     metrics: [
       { label: 'Academic CGPA', value: '3.92', detail: 'Out of 4.00 (Data Science Major)' },
+      { label: 'Merit Scholarship', value: '100%', detail: 'Tuition Waiver at UIU' },
       { label: 'Credits Completed', value: '84+', detail: 'United International University' },
-      { label: 'HSC & SSC GPA', value: '5.00', detail: 'Golden GPA in Science Group' },
-      { label: 'Research & Labs', value: '100+', detail: 'Students Guided in ML/Data Science' },
+      { label: 'Students Mentored', value: '100+', detail: 'In Machine Learning Labs' },
     ],
     socialLinks: {
       github: 'https://github.com/mahmudulmashrafe',
-      linkedin: 'https://linkedin.com/in/mahmudulmashrafe',
+      linkedin: 'https://www.linkedin.com/in/mahmudulmashrafe/',
       x: 'https://x.com/iammashrafe',
       kaggle: 'https://www.kaggle.com/mahmudulmashrafe',
       researchgate: 'https://www.researchgate.net/profile/Mahmudul-Mashrafe',
@@ -99,6 +132,7 @@ export const PORTFOLIO_DATA = {
         'Machine Learning Engineer Dhaka',
         'UIU Data Science',
         'United International University',
+        'Teaching Assistant UIU',
         'Computer Vision',
         'PyTorch',
         'TensorFlow',
@@ -121,10 +155,15 @@ export const PORTFOLIO_DATA = {
       category: 'Full Stack',
       year: '2024',
       tags: ['Next.js', 'Python', 'FastAPI', 'PostgreSQL', 'Docker', 'Machine Learning'],
-      metrics: 'Over 200+ academic papers and research projects structured into a searchable index.',
+      metrics: '200+ academic papers and research projects structured into a searchable index.',
       githubUrl: 'https://github.com/mahmudulmashrafe',
-      liveUrl: 'https://github.com/mahmudulmashrafe',
+      liveUrl: 'https://www.mahmudulmashrafe.com/#projects',
       featured: true,
+      architectureHighlights: [
+        'Semantic keyword matching for multidisciplinary research matchmaking.',
+        'PostgreSQL relational schema with optimized composite indexes for sub-10ms query speeds.',
+        'Docker containerized deployment pipeline ensuring deterministic local and production parity.',
+      ],
     },
     {
       id: 'mars-rover-prototype',
@@ -139,8 +178,13 @@ export const PORTFOLIO_DATA = {
       tags: ['Computer Vision', 'PyTorch', 'OpenCV', 'Robotics Telemetry', 'IoT', 'C++'],
       metrics: 'Sub-50ms sensor response loop with real-time video streaming across local networks.',
       githubUrl: 'https://github.com/mahmudulmashrafe',
-      liveUrl: 'https://github.com/mahmudulmashrafe',
+      liveUrl: 'https://www.mahmudulmashrafe.com/#projects',
       featured: true,
+      architectureHighlights: [
+        'Real-time OpenCV edge hazard detection running on local embedded controller.',
+        'Ultrasonic obstacle avoidance algorithm executing in closed-loop feedback.',
+        'Low-overhead WebSocket telemetry pipeline transmitting soil moisture and thermal data.',
+      ],
     },
     {
       id: 'data-engineering-pipeline',
@@ -154,9 +198,14 @@ export const PORTFOLIO_DATA = {
       year: '2024',
       tags: ['Apache Airflow', 'Python', 'PostgreSQL', 'Docker', 'Pandas', 'Data Cleaning'],
       metrics: 'Automated daily ingestion of 50K+ unstructured data records with 99.9% pipeline uptime.',
-      githubUrl: 'https://github.com/mahmudulmashrafe',
-      liveUrl: 'https://github.com/mahmudulmashrafe',
+      githubUrl: 'https://github.com/mahmudulmashrafe/UGA_University_list_extractor',
+      liveUrl: 'https://www.mahmudulmashrafe.com/#projects',
       featured: false,
+      architectureHighlights: [
+        'Airflow DAG orchestration with automated task retries and Slack error alerting.',
+        'Strict Pydantic contract assertions preventing silent schema corruption at ingestion.',
+        'Optimized Pandas vectorization accelerating preprocessing throughput by 4.2x.',
+      ],
     },
     {
       id: 'vision-defect-detection',
@@ -170,9 +219,14 @@ export const PORTFOLIO_DATA = {
       year: '2024',
       tags: ['PyTorch', 'OpenCV', 'TensorFlow', 'ONNX', 'Python', 'Image Processing'],
       metrics: '97.4% mAP on benchmark anomaly dataset with 28ms average frame inference.',
-      githubUrl: 'https://github.com/mahmudulmashrafe',
-      liveUrl: 'https://github.com/mahmudulmashrafe',
+      githubUrl: 'https://github.com/mahmudulmashrafe/FYDP',
+      liveUrl: 'https://www.mahmudulmashrafe.com/#projects',
       featured: false,
+      architectureHighlights: [
+        'Transfer learning backbone fine-tuned with custom focal loss for extreme class imbalance.',
+        'Post-training INT8 quantization via ONNX Runtime cutting model footprint by 68%.',
+        'Sub-30ms inference pipeline optimized for industrial visual quality control.',
+      ],
     },
   ] as Project[],
 
@@ -186,19 +240,19 @@ export const PORTFOLIO_DATA = {
       current: true,
       type: 'Academic & Instructional',
       description:
-        'Assisting the Department of Computer Science & Engineering in Machine Learning and Data Science curriculum instruction, lab assessments, and student project mentorship.',
+        'Appointed by the Department of Computer Science & Engineering to lead laboratory instructional sessions, guide students through Machine Learning algorithms, and evaluate computational coursework.',
       highlights: [
-        'Conducted interactive lab sessions covering supervised/unsupervised machine learning, statistical modeling, and Python data libraries.',
-        'Architected coding challenges and automated autograding unit tests for student coursework.',
-        'Provided 1-on-1 technical mentoring for 100+ undergraduate students on capstone data projects and model optimization.',
+        'Conducted interactive lab sessions covering supervised/unsupervised machine learning, statistical modeling, and Python data science ecosystems.',
+        'Designed practical programming challenges, data exploratory problem sets, and automated autograding unit tests for student coursework.',
+        'Provided 1-on-1 technical mentoring for 100+ undergraduate students on capstone data science implementations and neural network fine-tuning.',
       ],
-      skills: ['Machine Learning', 'Data Science', 'Python', 'Teaching', 'PyTorch', 'Data Analysis'],
+      skills: ['Machine Learning', 'Data Science', 'Python', 'Teaching & Mentorship', 'PyTorch', 'Data Analysis'],
     },
     {
       id: 'freelance-developer',
       role: 'Freelance Full Stack & ML Engineer',
       company: 'Independent Software Engineering',
-      location: 'Remote',
+      location: 'Remote / Dhaka',
       period: 'Jan 2023 — Present',
       current: true,
       type: 'Contract & Consulting',
@@ -224,8 +278,9 @@ export const PORTFOLIO_DATA = {
       period: '2022 — Present',
       current: true,
       location: 'Dhaka, Bangladesh',
-      details: 'Student ID: 011223015 • 84+ Credits Completed with Consistent Academic Honor List.',
-      badges: ['Major in Data Science', 'High Distinction', '84 Credits'],
+      details: 'Student ID: 0112230115 • 84+ Credits Completed • Awarded 100% Tuition Fee Waiver for Academic Merit.',
+      badges: ['Major in Data Science', '100% Merit Scholarship', 'High Distinction'],
+      scholarship: '100% Academic Tuition Fee Waiver (Top Merit Tier)',
     },
     {
       id: 'edu-hsc',
@@ -236,7 +291,7 @@ export const PORTFOLIO_DATA = {
       period: '2019 — 2021',
       location: 'Dhaka, Bangladesh',
       details: 'Science Group. Secured top-tier Golden GPA in all core science disciplines.',
-      badges: ['Science', 'Golden GPA 5.00'],
+      badges: ['Science Group', 'Golden GPA 5.00'],
     },
     {
       id: 'edu-ssc',
@@ -247,7 +302,7 @@ export const PORTFOLIO_DATA = {
       period: '2017 — 2019',
       location: 'Dhaka, Bangladesh',
       details: 'Science Group. Perfect academic record across mathematics and physics.',
-      badges: ['Science', 'GPA 5.00'],
+      badges: ['Science Group', 'GPA 5.00'],
     },
   ] as EducationItem[],
 
@@ -272,42 +327,42 @@ export const PORTFOLIO_DATA = {
 
   skills: {
     machineLearning: [
-      { name: 'PyTorch', level: 'Advanced' },
-      { name: 'TensorFlow', level: 'Proficient' },
-      { name: 'OpenCV', level: 'Advanced' },
-      { name: 'Scikit-Learn', level: 'Advanced' },
-      { name: 'Pandas', level: 'Advanced' },
-      { name: 'NumPy', level: 'Advanced' },
-      { name: 'Deep Learning', level: 'Advanced' },
-      { name: 'Computer Vision', level: 'Advanced' },
+      { name: 'PyTorch', level: 'Advanced', exp: '3+ yrs' },
+      { name: 'TensorFlow', level: 'Proficient', exp: '2+ yrs' },
+      { name: 'OpenCV', level: 'Advanced', exp: '2+ yrs' },
+      { name: 'Scikit-Learn', level: 'Advanced', exp: '3+ yrs' },
+      { name: 'Pandas', level: 'Advanced', exp: '3+ yrs' },
+      { name: 'NumPy', level: 'Advanced', exp: '3+ yrs' },
+      { name: 'Deep Learning', level: 'Advanced', exp: '2+ yrs' },
+      { name: 'Computer Vision', level: 'Advanced', exp: '2+ yrs' },
     ],
     backendData: [
-      { name: 'Python', level: 'Expert' },
-      { name: 'Apache Airflow', level: 'Proficient' },
-      { name: 'PostgreSQL', level: 'Advanced' },
-      { name: 'MySQL', level: 'Proficient' },
-      { name: 'MongoDB', level: 'Proficient' },
-      { name: 'Node.js', level: 'Proficient' },
-      { name: 'Express', level: 'Proficient' },
-      { name: 'Django', level: 'Proficient' },
+      { name: 'Python', level: 'Expert', exp: '4+ yrs' },
+      { name: 'Apache Airflow', level: 'Proficient', exp: '1+ yrs' },
+      { name: 'PostgreSQL', level: 'Advanced', exp: '2+ yrs' },
+      { name: 'MySQL', level: 'Proficient', exp: '3+ yrs' },
+      { name: 'MongoDB', level: 'Proficient', exp: '2+ yrs' },
+      { name: 'Node.js', level: 'Proficient', exp: '2+ yrs' },
+      { name: 'Express', level: 'Proficient', exp: '2+ yrs' },
+      { name: 'Django', level: 'Proficient', exp: '2+ yrs' },
     ],
     frontendWeb: [
-      { name: 'React', level: 'Advanced' },
-      { name: 'Next.js', level: 'Advanced' },
-      { name: 'TypeScript', level: 'Advanced' },
-      { name: 'JavaScript', level: 'Advanced' },
-      { name: 'Tailwind CSS', level: 'Advanced' },
-      { name: 'HTML5 & Semantic Web', level: 'Expert' },
-      { name: 'CSS3 & CSS Grid', level: 'Advanced' },
-      { name: 'Figma', level: 'Proficient' },
+      { name: 'React', level: 'Advanced', exp: '3+ yrs' },
+      { name: 'Next.js', level: 'Advanced', exp: '2+ yrs' },
+      { name: 'TypeScript', level: 'Advanced', exp: '2+ yrs' },
+      { name: 'JavaScript', level: 'Advanced', exp: '3+ yrs' },
+      { name: 'Tailwind CSS', level: 'Advanced', exp: '3+ yrs' },
+      { name: 'HTML5 & Semantic Web', level: 'Expert', exp: '4+ yrs' },
+      { name: 'CSS3 & Grid', level: 'Advanced', exp: '4+ yrs' },
+      { name: 'Figma', level: 'Proficient', exp: '2+ yrs' },
     ],
     devopsEnvironment: [
-      { name: 'Docker', level: 'Proficient' },
-      { name: 'Git & GitHub', level: 'Advanced' },
-      { name: 'Linux (Ubuntu/Debian)', level: 'Advanced' },
-      { name: 'macOS & Shell Scripting', level: 'Advanced' },
-      { name: 'Postman & API Testing', level: 'Advanced' },
-      { name: 'CI/CD & Vercel', level: 'Proficient' },
+      { name: 'Docker', level: 'Proficient', exp: '2+ yrs' },
+      { name: 'Git & GitHub', level: 'Advanced', exp: '4+ yrs' },
+      { name: 'Linux (Ubuntu/Debian)', level: 'Advanced', exp: '3+ yrs' },
+      { name: 'macOS & Shell Scripting', level: 'Advanced', exp: '3+ yrs' },
+      { name: 'Postman & API Testing', level: 'Advanced', exp: '3+ yrs' },
+      { name: 'CI/CD & Vercel', level: 'Proficient', exp: '2+ yrs' },
     ],
   },
 
