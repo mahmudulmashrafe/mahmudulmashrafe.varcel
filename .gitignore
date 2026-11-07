@@ -11,9 +11,7 @@
 # Production
 /build
 
-# Bun & Package Manager
-bun.lock
-bun.lockb
+
 
 # Environment Variables
 .env
