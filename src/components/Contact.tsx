@@ -188,7 +188,7 @@ export default function Contact() {
                 >
                   <input type="hidden" name="_subject" value="New Portfolio Contact from Mahmudul Mashrafe Website" />
                   <input type="hidden" name="_captcha" value="false" />
-                  <input type="hidden" name="_next" value="https://mahmudulmashrafe.vercel.app/thanks" />
+                  <input type="hidden" name="_next" value="https://www.mahmudulmashrafe.com/thanks" />
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">

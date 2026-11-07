@@ -88,7 +88,7 @@ export const PORTFOLIO_DATA = {
       email: 'mailto:mahmudulmashrafe@gmail.com',
     },
     seo: {
-      siteUrl: 'https://mahmudulmashrafe.vercel.app',
+      siteUrl: 'https://www.mahmudulmashrafe.com',
       title: 'Mahmudul Mashrafe | Data Scientist & Machine Learning Engineer',
       description:
         'Official portfolio of Mahmudul Mashrafe — Data Scientist, Machine Learning Engineer, and Teaching Assistant at United International University (UIU). Specializing in Deep Learning, Computer Vision, and Data Engineering.',

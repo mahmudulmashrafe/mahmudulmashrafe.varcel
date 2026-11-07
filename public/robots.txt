@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mahmudulmashrafe.vercel.app/sitemap.xml
+Sitemap: https://www.mahmudulmashrafe.com/sitemap.xml
