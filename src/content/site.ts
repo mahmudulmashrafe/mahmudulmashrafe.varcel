@@ -33,6 +33,8 @@ export const site = {
     x: "https://x.com/iammashrafe",
   },
 
+  vcard: "https://card.mahmudulmashrafe.com",
+
   cv: {
     path: "/MahmudulMashrafe_CV.pdf",
     available: true,

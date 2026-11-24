@@ -123,10 +123,14 @@ export function SiteHeader() {
             </a>
 
             <a
-              href={onHome ? "#contact" : "/#contact"}
-              className="btn-primary text-xs !py-1.5 !px-3.5"
+              href={site.vcard}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Digital VCard"
+              className="btn-primary text-xs !py-1.5 !px-3.5 inline-flex items-center gap-1"
             >
-              Contact
+              <span>VCard</span>
+              <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
             </a>
 
             {/* Mobile Hamburger Toggle */}
@@ -166,6 +170,18 @@ export function SiteHeader() {
                 </li>
               ))}
             </ul>
+            <div className="pt-4 border-t border-border mt-4">
+              <a
+                href={site.vcard}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="btn-primary text-xs w-full justify-center !py-2.5 inline-flex items-center gap-1.5"
+              >
+                <span>VCard</span>
+                <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
