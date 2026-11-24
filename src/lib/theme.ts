@@ -1,11 +1,11 @@
 export type Theme = "light" | "dark";
 export const THEME_STORAGE_KEY = "mm-theme";
 
-/** Runs before hydration so the stored theme applies without a flash. Dark is the default look. */
-export const themeInitScript = `(function(){try{var k='${THEME_STORAGE_KEY}';var t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){t='dark'}var r=document.documentElement;r.classList.toggle('dark',t==='dark');r.style.colorScheme=t}catch(e){}})();`;
+/** Runs before hydration so the stored theme applies without a flash. Light (white) is the default look. */
+export const themeInitScript = `(function(){try{var k='${THEME_STORAGE_KEY}';var t=localStorage.getItem(k);if(t!=='light'&&t!=='dark'){t='light'}var r=document.documentElement;r.classList.toggle('dark',t==='dark');r.style.colorScheme=t}catch(e){}})();`;
 
 export function readTheme(): Theme {
-  if (typeof document === "undefined") return "dark";
+  if (typeof document === "undefined") return "light";
   return document.documentElement.classList.contains("dark") ? "dark" : "light";
 }
 

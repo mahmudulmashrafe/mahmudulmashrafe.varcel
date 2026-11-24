@@ -15,7 +15,7 @@ import { applyTheme, readTheme, type Theme } from "@/lib/theme";
  * - Bulletproof return to y=0 on pointerup, pointercancel, lostpointercapture, or theme change.
  */
 export function LampPullCord() {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>("light");
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
