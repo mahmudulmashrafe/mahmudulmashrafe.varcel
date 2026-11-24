@@ -165,6 +165,14 @@ export function Contact() {
                 name="_subject"
                 value={`[Portfolio Inquiry] ${values.subject || "New Inquiry"}`}
               />
+              {/* Anti-spam honeypot (silent protection against automated bots) */}
+              <input
+                type="text"
+                name="_honey"
+                style={{ display: "none" }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Your Name" id="contact-name" error={errors.name} required>
