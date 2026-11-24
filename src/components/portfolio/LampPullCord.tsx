@@ -36,40 +36,11 @@ export function LampPullCord() {
     animate(rotate, 0, { duration: 0.35, ease: "easeOut" });
   }, [theme, y, rotate]);
 
-  // Web Audio mechanical brass click synthesizer
-  const playClickSound = (isLight: boolean) => {
-    try {
-      const AudioCtx =
-        window.AudioContext ||
-        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(isLight ? 1400 : 850, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.05);
-
-      gain.gain.setValueAtTime(0.3, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start();
-      osc.stop(ctx.currentTime + 0.06);
-    } catch {
-      /* Audio blocked or unavailable */
-    }
-  };
-
   // Perform theme toggle and spring snap back to top
   const triggerToggleAndSnapBack = (fromPullDistance?: number) => {
     const nextTheme: Theme = theme === "dark" ? "light" : "dark";
     setTheme(nextTheme);
     applyTheme(nextTheme);
-    playClickSound(nextTheme === "light");
 
     if (fromPullDistance !== undefined && fromPullDistance > 8) {
       // Release from pull: Spring snap back to 0 with pendulum sway
