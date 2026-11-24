@@ -41,30 +41,38 @@ export function Contact() {
     }
     setErrors({});
 
-    if (endpointReady) {
-      setStatus({ kind: "sending" });
-      try {
-        const res = await fetch(site.contactEndpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(r.data),
-        });
-        if (!res.ok) throw new Error(`Request failed (${res.status})`);
-        setStatus({ kind: "sent" });
-        setValues(empty);
-      } catch {
-        setStatus({ kind: "error", message: "Your message couldn't be sent. Please email directly." });
+    setStatus({ kind: "sending" });
+    try {
+      const endpoint = site.contactEndpoint || `https://formsubmit.co/ajax/${site.email.address}`;
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: r.data.name,
+          email: r.data.email,
+          subject: r.data.subject,
+          message: r.data.message,
+          _subject: `[Portfolio Inquiry] ${r.data.subject} — ${r.data.name}`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`FormSubmit request failed with status ${res.status}`);
       }
-      return;
-    }
 
-    if (emailReady) {
-      window.location.href = buildMailto(site.email.address, r.data);
-      setStatus({ kind: "mail-app" });
-      return;
+      setStatus({ kind: "sent" });
+      setValues(empty);
+    } catch {
+      setStatus({
+        kind: "error",
+        message: `Your message couldn't be sent right now. Please email directly to ${site.email.address}.`,
+      });
     }
-
-    setStatus({ kind: "not-configured", data: r.data });
   }
 
   return (
@@ -141,11 +149,28 @@ export function Contact() {
 
           {/* Form */}
           <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-soft">
-            <form onSubmit={onSubmit} noValidate className="space-y-4">
+            <form
+              action={`https://formsubmit.co/${site.email.address}`}
+              method="POST"
+              onSubmit={onSubmit}
+              noValidate
+              className="space-y-4"
+            >
+              {/* FormSubmit Configuration Inputs */}
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_next" value={`${site.seo.siteUrl}/thanks`} />
+              <input
+                type="hidden"
+                name="_subject"
+                value={`[Portfolio Inquiry] ${values.subject || "New Inquiry"}`}
+              />
+
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Your Name" id="contact-name" error={errors.name} required>
                   <input
                     id="contact-name"
+                    name="name"
                     type="text"
                     autoComplete="name"
                     value={values.name}
@@ -157,6 +182,7 @@ export function Contact() {
                 <Field label="Email Address" id="contact-email" error={errors.email} required>
                   <input
                     id="contact-email"
+                    name="email"
                     type="email"
                     autoComplete="email"
                     value={values.email}
@@ -170,6 +196,7 @@ export function Contact() {
               <Field label="Subject" id="contact-subject" error={errors.subject} required>
                 <input
                   id="contact-subject"
+                  name="subject"
                   type="text"
                   value={values.subject}
                   onChange={update("subject")}
@@ -181,6 +208,7 @@ export function Contact() {
               <Field label="Message" id="contact-message" error={errors.message} required>
                 <textarea
                   id="contact-message"
+                  name="message"
                   rows={4}
                   value={values.message}
                   onChange={update("message")}
@@ -204,9 +232,14 @@ export function Contact() {
               </div>
 
               {status.kind === "sent" && (
-                <p role="status" className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                  Message sent successfully. Thank you!
-                </p>
+                <div role="status" className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                  Message sent successfully! Thank you for reaching out, I will get back to you shortly.
+                </div>
+              )}
+              {status.kind === "error" && (
+                <div role="alert" className="rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-xs font-medium text-destructive">
+                  {status.message}
+                </div>
               )}
               {status.kind === "mail-app" && (
                 <p role="status" className="rounded-xl border border-border bg-surface-sunken p-3 text-xs text-muted-foreground">

@@ -5,6 +5,10 @@ import { site } from "@/content/site";
 export const metadata = {
   title: `Thank You | ${site.name}`,
   description: `Thank you for your message. ${site.name} will respond to your inquiry shortly.`,
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function ThanksPage() {

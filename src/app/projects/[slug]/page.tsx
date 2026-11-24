@@ -27,19 +27,54 @@ export async function generateMetadata({
     };
   }
   const title = `${project.title} — ${project.domain.split(" / ")[0]} | ${site.name}`;
+  const projectKeywords = [
+    project.title,
+    project.fullTitle,
+    `${project.title} Mahmudul Mashrafe`,
+    `${site.name} ${project.domain}`,
+    ...project.stack,
+    "Mahmudul Mashrafe",
+    "Data Science Research",
+    "Machine Learning Project",
+    "Mahmudul Mashrafe UIU",
+  ];
+
   return {
     title,
     description: project.summary,
+    keywords: projectKeywords,
+    authors: [{ name: site.name, url: site.seo.siteUrl }],
+    creator: site.name,
+    publisher: site.name,
+    alternates: {
+      canonical: `${site.seo.siteUrl}/projects/${project.slug}`,
+    },
     openGraph: {
       title,
       description: project.summary,
       type: "article",
       url: `${site.seo.siteUrl}/projects/${project.slug}`,
+      siteName: site.name,
+      images: [
+        {
+          url: site.photo.src,
+          width: 1200,
+          height: 630,
+          alt: `${project.title} — ${site.name}`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: project.summary,
+      creator: "@iammashrafe",
+      site: "@iammashrafe",
+      images: [site.photo.src],
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }
@@ -59,8 +94,35 @@ export default async function ProjectDetailPage({
   const prev = projects[(idx - 1 + projects.length) % projects.length] ?? p;
   const next = projects[(idx + 1) % projects.length] ?? p;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": p.github ? "SoftwareSourceCode" : "ScholarlyArticle",
+    name: p.fullTitle,
+    headline: p.title,
+    description: p.summary,
+    url: `${site.seo.siteUrl}/projects/${p.slug}`,
+    author: {
+      "@type": "Person",
+      name: site.name,
+      url: site.seo.siteUrl,
+    },
+    publisher: {
+      "@type": "Person",
+      name: site.name,
+      url: site.seo.siteUrl,
+    },
+    inLanguage: "en-US",
+    about: p.domain,
+    keywords: p.stack.join(", "),
+    ...(p.github ? { codeRepository: p.github, programmingLanguage: p.stack } : {}),
+  };
+
   return (
     <article className="pt-28 md:pt-36">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="container-page">
         <Link href="/#projects" className="text-eyebrow inline-flex items-center gap-2 text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-3.5 w-3.5" aria-hidden /> All projects

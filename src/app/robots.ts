@@ -7,8 +7,20 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        disallow: ["/thanks"],
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: ["/thanks"],
+      },
+      {
+        userAgent: "Bingbot",
+        allow: "/",
+        disallow: ["/thanks"],
       },
     ],
     sitemap: `${site.seo.siteUrl}/sitemap.xml`,
+    host: site.seo.siteUrl,
   };
 }

@@ -114,7 +114,19 @@ export function EngineeringProjects() {
           <div className="mt-12 flex justify-center">
             <button
               type="button"
-              onClick={() => setShowAll((prev) => !prev)}
+              onClick={() => {
+                if (showAll) {
+                  setShowAll(false);
+                  // Smoothly scroll back to the engineering projects section header so the user doesn't get left below
+                  const el = document.getElementById("projects");
+                  if (el) {
+                    const top = el.getBoundingClientRect().top + window.scrollY - 80;
+                    window.scrollTo({ top, behavior: "smooth" });
+                  }
+                } else {
+                  setShowAll(true);
+                }
+              }}
               className="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl text-xs sm:text-sm font-semibold border border-border bg-surface hover:border-accent hover:bg-surface-sunken text-foreground transition-all shadow-soft group cursor-pointer"
             >
               <span>{showAll ? "Show Less" : `View More Projects (${list.length - INITIAL_COUNT} more)`}</span>

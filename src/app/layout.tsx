@@ -7,6 +7,7 @@ import { AmbientBackground } from "@/components/portfolio/AmbientBackground";
 import { ScrollProgress } from "@/components/portfolio/ScrollProgress";
 import { SiteHeader } from "@/components/portfolio/SiteHeader";
 import { SiteFooter } from "@/components/portfolio/SiteFooter";
+import { LampPullCord } from "@/components/portfolio/LampPullCord";
 
 const fontSans = Manrope({
   subsets: ["latin"],
@@ -38,47 +39,48 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(site.seo.siteUrl),
   title: {
-    default: site.title,
-    template: `%s | ${site.name}`,
+    default: "Mahmudul Mashrafe",
+    template: `%s | Mahmudul Mashrafe`,
   },
   description: site.description,
-  keywords: [
-    "Mahmudul Mashrafe",
-    "Data Science",
-    "Machine Learning",
-    "Healthcare AI",
-    "Junior Product Analyst",
-    "Bdjobs",
-    "EEG Research",
-    "Bioinformatics",
-    "Portfolio",
-  ],
+  keywords: [...site.seo.keywords],
   authors: [{ name: site.name, url: site.seo.siteUrl }],
   creator: site.name,
-  verification: {
-    google: site.seo.googleVerification,
+  publisher: site.name,
+  category: "technology",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
   },
   openGraph: {
-    type: "website",
+    type: "profile",
     locale: "en_US",
     url: site.seo.siteUrl,
-    title: site.title,
+    title: "Mahmudul Mashrafe",
     description: site.description,
-    siteName: site.name,
+    siteName: "Mahmudul Mashrafe",
+    firstName: "Mahmudul",
+    lastName: "Mashrafe",
+    username: "mahmudulmashrafe",
+    gender: "male",
     images: [
       {
         url: site.photo.src,
         width: 1200,
         height: 630,
-        alt: `${site.name} — Portfolio`,
+        alt: `${site.name} — Data Science & Product Analyst Portfolio`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: site.title,
+    title: "Mahmudul Mashrafe",
     description: site.description,
     images: [site.photo.src],
+    creator: "@iammashrafe",
+    site: "@iammashrafe",
   },
   robots: {
     index: true,
@@ -118,6 +120,7 @@ export default function RootLayout({
       >
         <AmbientBackground />
         <ScrollProgress />
+        <LampPullCord />
         <SiteHeader />
         <main id="main" tabIndex={-1}>
           {children}
