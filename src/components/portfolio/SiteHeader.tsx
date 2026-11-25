@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Github, Linkedin, Menu, X } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { navItems, site, type NavId } from "@/content/site";
 import { cn } from "@/lib/utils";
@@ -101,7 +101,7 @@ export function SiteHeader() {
             </ul>
           </nav>
 
-          {/* Right Action Icons & Contact */}
+          {/* Right Action Icons & VCard */}
           <div className="flex items-center gap-2">
             <a
               href={site.socials.github}
@@ -120,6 +120,15 @@ export function SiteHeader() {
               className="grid place-items-center h-8 w-8 rounded-full text-muted-foreground hover:text-foreground transition-colors"
             >
               <Linkedin className="h-4 w-4" />
+            </a>
+            <a
+              href={site.email.portal}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Email (mail.mahmudulmashrafe.com)"
+              className="grid place-items-center h-8 w-8 rounded-full text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Mail className="h-4 w-4" />
             </a>
 
             <a

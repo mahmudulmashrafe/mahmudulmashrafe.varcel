@@ -18,6 +18,7 @@ export const site = {
 
   email: {
     address: "mail@mahmudulmashrafe.com",
+    portal: "https://mail.mahmudulmashrafe.com",
     displayPlaceholder: "mail@mahmudulmashrafe.com",
     verified: true,
   },
@@ -31,6 +32,8 @@ export const site = {
     linkedin: "https://www.linkedin.com/in/mahmudulmashrafe/",
     github: "https://github.com/mahmudulmashrafe",
     x: "https://x.com/iammashrafe",
+    instagram: "https://www.instagram.com/iammashrafe/",
+    facebook: "https://www.facebook.com/iammashrafe",
   },
 
   vcard: "https://card.mahmudulmashrafe.com",

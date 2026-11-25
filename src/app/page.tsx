@@ -101,6 +101,8 @@ export default function HomePage() {
           site.socials.linkedin,
           site.socials.github,
           site.socials.x,
+          site.socials.instagram,
+          site.socials.facebook,
         ],
         knowsAbout: [
           "Mahmudul Mashrafe",
